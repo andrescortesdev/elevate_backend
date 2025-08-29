@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import serverless from "serverless-http";
+
 
 import CvController from './app/routes/CandidatesRouter.js'
 import vacanciesControllers from './app/routes/VacanciesRouter.js'
@@ -42,4 +44,4 @@ app.listen(PORT, async () => {
     console.log(`✅ Server running at http://localhost:${PORT}`);
 });
 
-export default app;
+export default serverless(app);
