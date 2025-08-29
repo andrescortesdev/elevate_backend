@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import serverless from 'serverless-http'
 
 import CvController from './app/routes/CandidatesRouter.js'
 import vacanciesControllers from './app/routes/VacanciesRouter.js'
@@ -34,12 +35,5 @@ app.use('/api/shares', candidateSharesController);
 app.use('/api/auth', authController);
 
 // Configure the application port, taking the environment variable or the default value (3000)
-const PORT = process.env.PORT || 9000;
-
-// Raise the server and listen on the defined port
-
-app.listen(PORT, async () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
-});
-
+export const handler = serverless(app);
 export default app;
