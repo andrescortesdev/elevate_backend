@@ -4,13 +4,13 @@ import cors from 'cors';
 import serverless from "serverless-http";
 
 
-import CvController from './app/routes/CandidatesRouter.js'
-import vacanciesControllers from './app/routes/VacanciesRouter.js'
-import applicationsController from './app/routes/ApplicationsRouter.js'
-import candidatesController from './app/routes/CandidatesRouter.js'
-import usersController from './app/routes/UsersRouter.js'
-import candidateSharesController from './app/routes/CandidateSharesRouter.js'
-import authController from './app/routes/AuthRouter.js'
+import CvController from '../app/routes/CandidatesRouter.js'
+import vacanciesControllers from '../app/routes/VacanciesRouter.js'
+import applicationsController from '../app/routes/ApplicationsRouter.js'
+import candidatesController from '../app/routes/CandidatesRouter.js'
+import usersController from '../app/routes/UsersRouter.js'
+import candidateSharesController from '../app/routes/CandidateSharesRouter.js'
+import authController from '../app/routes/AuthRouter.js'
 
 
 // Load environment variables from .env file
