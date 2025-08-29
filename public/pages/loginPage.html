@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TalentTrack - Login</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Consistent CSS Variables -->
+    <link rel="stylesheet" href="../css/config.css">
+
+    <!-- Consistent Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body
+    class="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 font-['Inter'] flex items-center justify-center min-h-screen relative overflow-hidden">
+    <!-- Subtle background pattern like in index -->
+    <div class="absolute inset-0 opacity-5">
+        <svg class="w-full h-full" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <circle cx="20" cy="20" r="1" fill="white" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots)" />
+        </svg>
+    </div>
+
+
+    <!-- Login card -->
+    <div
+        class="relative z-10 bg-white/95 backdrop-blur-lg p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-md border border-white/20 animate-fade-in">
+        <!-- Consistent logo -->
+        <div class="flex items-center justify-center space-x-3 mb-6">
+            <div
+                class="w-10 h-10 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">TalentTrack</h1>
+        </div>
+        <p class="text-center text-gray-600 mb-8">Welcome back! Please sign in to your account.</p>
+
+        <form id="loginForm" class="space-y-6">
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                <div class="relative">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207">
+                        </path>
+                    </svg>
+                    <input type="email" id="email" name="email" required
+                        class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus-professional hover-glow transition-all">
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <div class="relative">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                        </path>
+                    </svg>
+                    <input type="password" id="password" name="password" required
+                        class="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus-professional hover-glow transition-all">
+                    <button type="button" id="togglePassword"
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
+                        <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Forgot password -->
+            <div class="text-right text-sm">
+                <a href="#" class="link-hover text-blue-600 font-medium">Forgot password?</a>
+            </div>
+
+            <!-- Button -->
+            <button type="submit"
+                class="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover-lift focus-professional">
+                Sign In
+            </button>
+        </form>
+
+        <!-- Back to home -->
+        <div class="mt-8 text-center">
+            <a href="../index.html"
+                class="inline-flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                <span>Back to home</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modular scripts -->
+    <script type="module" src="../js/views/loginPage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { padding: 8px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>Authentication Test</h1>
+    
+    <h2>Register User</h2>
+    <form id="registerForm">
+        <div class="form-group">
+            <label for="regName">Name:</label>
+            <input type="text" id="regName" value="Test User" required>
+        </div>
+        <div class="form-group">
+            <label for="regEmail">Email:</label>
+            <input type="email" id="regEmail" value="test@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="regPassword">Password:</label>
+            <input type="password" id="regPassword" value="testpass123" required>
+        </div>
+        <div class="form-group">
+            <label for="regRole">Role ID:</label>
+            <input type="number" id="regRole" value="1" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    
+    <h2>Login User</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" value="test@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" value="testpass123" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        function showResult(message, isSuccess = true) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result ${isSuccess ? 'success' : 'error'}`;
+            resultDiv.innerHTML = message;
+        }
+        
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const userData = {
+                name: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value,
+                role_id: parseInt(document.getElementById('regRole').value)
+            };
+            
+            try {
+                const response = await fetch('http://localhost:9000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showResult(`✅ Registration successful!<br><pre>${JSON.stringify(data, null, 2)}</pre>`, true);
+                } else {
+                    showResult(`❌ Registration failed: ${data.message}<br><pre>${JSON.stringify(data, null, 2)}</pre>`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Registration error: ${error.message}`, false);
+            }
+        });
+        
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const credentials = {
+                email: document.getElementById('loginEmail').value,
+                password: document.getElementById('loginPassword').value
+            };
+            
+            try {
+                const response = await fetch('http://localhost:9000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(credentials)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showResult(`✅ Login successful!<br><pre>${JSON.stringify(data, null, 2)}</pre>`, true);
+                } else {
+                    showResult(`❌ Login failed: ${data.message}<br><pre>${JSON.stringify(data, null, 2)}</pre>`, false);
+                }
+            } catch (error) {
+                showResult(`❌ Login error: ${error.message}`, false);
+            }
+        });
+    </script>
+</body>
+</html>

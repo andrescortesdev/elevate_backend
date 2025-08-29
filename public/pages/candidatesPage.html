@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" />
+  <title>TalentTrack Candidates - Database</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <link rel="stylesheet" href="../css/config.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-gray-50 font-['Inter'] min-h-screen">
+  <div class="flex flex-col min-h-screen">
+    <!-- HEADER - Using navbar component -->
+    <div id="navbar-container"></div>
+    
+    <!-- Mobile Navigation Menu (Hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-blue-800 shadow-lg border-t border-blue-600">
+      <nav class="px-4 py-3 space-y-1">
+        <a href="vacanciesPage.html" class="block px-3 py-2 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors text-sm font-medium">Vacancies</a>
+        <a href="candidatesPage.html" class="block px-3 py-2 rounded-lg bg-blue-700 text-white text-sm font-medium">Candidates</a>
+        <!-- <a href="reports.html" class="block px-3 py-2 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors text-sm font-medium">Reports</a> -->
+        <!-- <a href="upload.html" class="block px-3 py-2 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors text-sm font-medium">Upload CVs</a> -->
+      </nav>
+    </div>
+    
+    <!-- CONTENT -->
+    <main class="flex flex-col flex-1 px-4 md:px-10 py-6">
+      <div class="max-w-7xl w-full mx-auto">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4">
+          <div>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Candidate Database</h1>
+            <p class="text-gray-600">Manage and explore all registered candidates</p>
+          </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
+          <div class="bg-white rounded-lg md:rounded-xl shadow-sm p-3 sm:p-4 md:p-6 border border-gray-200 hover:shadow-md hover:scale-102 transition-all duration-300">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-600 text-xs sm:text-sm font-medium">Total Candidates</p>
+                <p id="total-candidates" class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">0</p>
+              </div>
+              <div class="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" sm:width="24" sm:height="24" fill="currentColor" viewBox="0 0 256 256" class="text-blue-600 w-5 h-5 sm:w-6 sm:h-6">
+                  <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm p-4 md:p-6 border border-gray-200 hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-600 text-sm font-medium">With Applications</p>
+                <p id="candidates-with-apps" class="text-2xl font-bold text-green-600">0</p>
+              </div>
+              <div class="bg-green-50 p-3 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" class="text-green-600">
+                  <path d="M228.24,76.24l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,216.92,67.76a8,8,0,0,1,11.32,11.32Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-sm p-4 md:p-6 border border-gray-200 hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-gray-600 text-sm font-medium">Occupations</p>
+                <p id="unique-occupations" class="text-2xl font-bold text-purple-600">0</p>
+              </div>
+              <div class="bg-purple-50 p-3 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" class="text-purple-600">
+                  <path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,144H32V64H224V192Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Filters and Search -->
+        <div class="bg-white rounded-lg md:rounded-xl shadow-sm p-4 md:p-6 border border-gray-200 mb-6 md:mb-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-semibold text-slate-700 mb-2">Search</label>
+              <div class="relative">
+                <input id="search-input" type="text" placeholder="Name, email, occupation..."
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"
+                  class="absolute left-3 top-2.5 text-gray-400">
+                  <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Occupation</label>
+              <select id="occupation-filter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                <option value="">All occupations</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Skill</label>
+              <input list="skills-datalist" id="skill-filter" placeholder="Type or select skill..." 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+              <datalist id="skills-datalist"></datalist>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <button id="apply-filters" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 sm:px-6 py-2.5 sm:py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex-1 sm:flex-none text-sm sm:text-base">
+              Apply filters
+            </button>
+            <button id="clear-filters" class="bg-gray-100 text-gray-700 px-4 sm:px-6 py-2.5 sm:py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors flex-1 sm:flex-none text-sm sm:text-base">
+              Clear
+            </button>
+          </div>
+        </div>
+        <!-- Candidate Cards -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6">
+          <div id="candidates-container" class="divide-y divide-gray-100">
+            <!-- Loading state -->
+            <div id="loading-candidates" class="py-16 px-6 text-center text-gray-500">
+              <div class="flex flex-col items-center gap-4">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <p class="font-medium text-lg">Loading candidates...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex flex-col sm:flex-row items-center justify-between mt-6 gap-3 sm:gap-4">
+          <div class="text-xs sm:text-sm text-gray-600 order-2 sm:order-1">
+            Showing <span class="font-semibold text-gray-900" id="pagination-start">0</span> to <span class="font-semibold text-gray-900" id="pagination-end">0</span> of <span class="font-semibold text-gray-900" id="pagination-total">0</span> candidates
+          </div>
+          <div id="pagination-container" class="order-1 sm:order-2 flex items-center space-x-2"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modular scripts -->
+  <script type="module" src="../js/views/candidatesPage.js"></script>
+</body>
+
+</html>

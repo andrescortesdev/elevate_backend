@@ -1,0 +1,30 @@
+# Dependencias
+node_modules/
+.vscode/
+backup-files/
+
+# Variables de entorno
+.env
+.env.* 
+.vercel
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+backup-files/
+
+
+
+.claude/
+todos.md
+progress.md
+.vscode/settings.json
